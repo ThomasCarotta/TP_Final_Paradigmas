@@ -5,7 +5,7 @@ def leer_archivo(nombre_archivo):
     try:
         with open(nombre_archivo, 'r', encoding='utf-8') as archivo:
             contenido = archivo.read()
-            text_corregido= contenido.replace('(','').replace(')','').replace('=',' ')
+            text_corregido= contenido.replace('(',' ( ').replace(')',' ) ').replace('=',' = ').replace(',',' , ').replace(':',' : ').replace(';',' ; ').replace('+',' + ').replace('>',' > ').replace('<',' < ')
             text_separado=text_corregido.split()
             print(text_separado)
             analizar(text_separado)
@@ -16,7 +16,6 @@ def leer_archivo(nombre_archivo):
 palabrasReservadas=['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class',
                          'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 
                          'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while','with','yield','print']
-
 
 def analizar(contenido):
     for palabra in contenido:

@@ -21,26 +21,24 @@ def automata_enteros(cadena):
     EI= 'A'
     EF= 'B,D'
     EA= EI
+    EV= EA
     
     cadenas=str(cadena)
     for caracter in cadenas:
-        #print (caracter)
+        EV= EA
         if caracter in Σ:
-            #print ("El carcacter pertenece al alfabeto")
             for f in tablaEnteros:
-                if EA == f[0] and caracter in f[1]:
+                if EV == f[0] and caracter in f[1]:
                     TablaC.append([EA,caracter,f[2]])  
                     EA=f[2]
-                    # print ("Estado actual es : " + str(EA))
-                    break
+                
         else:
-            # print("Cadena no pertenece al alfabeto")
             verificador = False
     
     if EA != EF:
         verificador=False
     return(verificador)
-    
+
 def automata_identificadores(cadena):
     letra = letras()
     numero = numeros()
@@ -54,7 +52,7 @@ def automata_identificadores(cadena):
                   ['M', numero,'M'],
                   ['M', '_','M'],
                   ['M', letra,'M']]
-    TablaC = []
+    TablaC = [] #Contiene las transiciones realizadas
     verificador = True #revisar que (x ϵ Σ)
 
     Σ=['_']   #Alfabeto de entrada
@@ -67,22 +65,17 @@ def automata_identificadores(cadena):
     EI= 'A'
     EF= 'FINAL'
     EA= EI
-    
-    palabras=cadena.split()
+    EV= EA
 
     cadenas=str(cadena)
     for caracter in cadenas:
-        # print (caracter)
+        EV=EA
         if caracter in Σ:
-            # print ("El carcacter pertenece al alfabeto")
             for f in tablaIdentificadores:
-                if EA == f[0] and caracter in f[1]:
+                if EV == f[0] and caracter in f[1]:
                     TablaC.append([EA,caracter,f[2]])  
                     EA=f[2]
-                    # print ("Estado actual es : " + str(EA))
-                    break
         else:
-            # print("Cadena no pertenece al alfabeto")
             verificador = False
 
     if EA != EF:
@@ -138,20 +131,17 @@ def automata_reales(cadena):
     EI= 'A'
     EF= ['J,N,P,Q','H,K,L,Ñ']
     EA= EI
-    
+    EV= EA
+
     cadenas=str(cadena)
     for caracter in cadenas:
-        # print (caracter)
+        EV=EA
         if caracter in Σ:
-            # print ("El carcacter pertenece al alfabeto")
             for f in tablaReales:
-                if EA == f[0] and caracter in f[1]:
+                if EV == f[0] and caracter in f[1]:
                     TablaC.append([EA,caracter,f[2]])  
                     EA=f[2]
-                    # print ("Estado actual es : " + str(EA))
-                    break
         else:
-            # print("Cadena no pertenece al alfabeto")
             verificador = False
     
     if not(EA in EF):
